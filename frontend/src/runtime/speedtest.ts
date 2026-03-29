@@ -2,6 +2,19 @@ import { apiBase } from "./apiBase";
 import { mean, stddev, successiveJitterMs } from "./stats";
 import { randomUUID } from "./uuid";
 
+/** Spec / Firefox cap: getRandomValues may reject more than 65536 bytes per call. */
+function fillRandomBytes(buf: Uint8Array): void {
+  const c = globalThis.crypto;
+  if (!c?.getRandomValues) {
+    for (let i = 0; i < buf.length; i++) buf[i] = Math.floor(Math.random() * 256);
+    return;
+  }
+  const max = 65536;
+  for (let off = 0; off < buf.length; off += max) {
+    c.getRandomValues(buf.subarray(off, off + Math.min(max, buf.length - off)));
+  }
+}
+
 export type SpeedPhase = "idle" | "warmup" | "ping" | "download" | "upload" | "done" | "error";
 
 export interface SpeedtestProgress {
@@ -187,7 +200,7 @@ export async function runSpeedtest(params: SpeedtestParams): Promise<SpeedtestRe
   const warmupUlEnd = ulStart + Math.min(500, ulWallSec * 1000 * 0.1);
   const ulChunk = Math.min(Math.max(256 * 1024, Math.floor(params.payloadBytes / 4)), 8 * 1024 * 1024);
   const ulBuf = new Uint8Array(ulChunk);
-  crypto.getRandomValues(ulBuf);
+  fillRandomBytes(ulBuf);
   const ulAb = ulBuf.buffer.slice(0);
   const aggUl = { bytes: 0 };
 
