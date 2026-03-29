@@ -1,5 +1,6 @@
 import { apiBase } from "./apiBase";
 import { mean, stddev, successiveJitterMs } from "./stats";
+import { randomUUID } from "./uuid";
 
 export type SpeedPhase = "idle" | "warmup" | "ping" | "download" | "upload" | "done" | "error";
 
@@ -46,7 +47,7 @@ export interface SpeedtestResult {
 }
 
 function cb(): string {
-  return crypto.randomUUID();
+  return randomUUID();
 }
 
 async function pingOnce(base: string, signal?: AbortSignal): Promise<number> {
