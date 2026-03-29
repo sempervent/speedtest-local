@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { exportTestsNewPath, fetchClients, fetchTests, type TestRunSummary } from "@/lib/api";
+import { exportTestsNewPath, fetchClients, fetchTests, type TestRunSummary } from "../lib/api";
 
 type SortKey = "created_at" | "download_mbps" | "upload_mbps" | "latency_ms_avg";
 

@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { fetchTest, type TestRunDetail } from "@/lib/api";
+import { fetchTest, type TestRunDetail } from "../lib/api";
 
 export function TestDetailPage() {
   const { id } = useParams();

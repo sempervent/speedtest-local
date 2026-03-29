@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchConfig, postTest, type AppConfig } from "@/lib/api";
-import { getOrCreateClientStableId } from "@/lib/clientId";
-import { runSpeedtest, type SpeedtestProgress } from "@/lib/speedtest";
+import { fetchConfig, postTest, type AppConfig } from "../lib/api";
+import { getOrCreateClientStableId } from "../lib/clientId";
+import { runSpeedtest, type SpeedtestProgress } from "../lib/speedtest";
 
 function formatMbps(v: number | undefined): string {
   if (v === undefined || Number.isNaN(v)) return "—";

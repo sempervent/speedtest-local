@@ -1,10 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Layout } from "@/components/Layout";
-import { AnalyticsPage } from "@/pages/AnalyticsPage";
-import { HistoryPage } from "@/pages/HistoryPage";
-import { RunTestPage } from "@/pages/RunTestPage";
-import { SettingsPage } from "@/pages/SettingsPage";
-import { TestDetailPage } from "@/pages/TestDetailPage";
+import { Layout } from "./components/Layout";
+import { AnalyticsPage } from "./pages/AnalyticsPage";
+import { HistoryPage } from "./pages/HistoryPage";
+import { RunTestPage } from "./pages/RunTestPage";
+import { SettingsPage } from "./pages/SettingsPage";
+import { TestDetailPage } from "./pages/TestDetailPage";
 
 export default function App() {
   return (

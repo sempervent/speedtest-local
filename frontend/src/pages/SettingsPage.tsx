@@ -5,7 +5,7 @@ import {
   fetchAdminSettings,
   patchAdminSettings,
   type AdminSettings,
-} from "@/lib/api";
+} from "../lib/api";
 
 export function SettingsPage() {
   const [s, setS] = useState<AdminSettings | null>(null);
