@@ -1,10 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import * as api from "../lib/api";
+import * as api from "../runtime/api";
 import { SettingsPage } from "./SettingsPage";
 
-vi.mock("../lib/api", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../lib/api")>();
+vi.mock("../runtime/api", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../runtime/api")>();
   return {
     ...actual,
     fetchAdminSettings: vi.fn(),

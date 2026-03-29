@@ -162,6 +162,7 @@ dist/
 downloads/
 eggs/
 .eggs/
+# Python packaging / venv (matches any path segment named "lib" — do not use frontend/src/lib/)
 lib/
 lib64/
 parts/

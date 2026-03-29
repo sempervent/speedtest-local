@@ -18,7 +18,7 @@ import {
   fetchClients,
   fetchStatsSummary,
   fetchTimeseries,
-} from "../lib/api";
+} from "../runtime/api";
 
 function ma3(xs: (number | null)[]): (number | null)[] {
   const out: (number | null)[] = [];
