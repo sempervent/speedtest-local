@@ -18,8 +18,22 @@ export interface AppConfig {
 
 export async function fetchConfig(): Promise<AppConfig> {
   const r = await apiFetch("/api/config");
-  if (!r.ok) throw new Error(`config ${r.status}`);
-  return (await r.json()) as AppConfig;
+  const text = await r.text();
+  if (!r.ok) {
+    throw new Error(`config ${r.status}: ${text.slice(0, 200)}`);
+  }
+  const ct = r.headers.get("content-type") ?? "";
+  if (!ct.includes("application/json")) {
+    throw new Error(
+      `config: expected JSON from /api/config, got ${ct || "unknown type"} (SPA or proxy mis-route? first bytes: ${text.slice(0, 120).replace(/\s+/g, " ")})`,
+    );
+  }
+  try {
+    return JSON.parse(text) as AppConfig;
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : "parse error";
+    throw new Error(`config: ${msg}`);
+  }
 }
 
 export interface TestRunSummary {
