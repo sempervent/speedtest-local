@@ -31,7 +31,7 @@ const baseSettings: api.AdminSettings = {
 
 beforeEach(() => {
   vi.mocked(api.fetchAdminSettings).mockResolvedValue({ ...baseSettings });
-  vi.mocked(api.patchAdminSettings).mockImplementation(async (patch) => ({
+  vi.mocked(api.patchAdminSettings).mockImplementation(async (patch: Record<string, unknown>) => ({
     ...baseSettings,
     ...patch,
   } as api.AdminSettings));
