@@ -1,0 +1,1 @@
+"""speedtest-local FastAPI application."""
